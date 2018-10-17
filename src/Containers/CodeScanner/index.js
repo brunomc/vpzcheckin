@@ -39,15 +39,22 @@ render() {
         if(this.state.scanning) {
             return (
             
-                
+                <Container>
+                <Grid>
+                     <Row>
+                        <Col>
                             <Container style={styles.rectangleContainer}>
-                                <Camera style={styles.camera} type={this.state.cameraType} onBarCodeRead={this._handleBarCodeRead.bind(this)}>
+                                <Camera style={styles.camera} type={this.state.cameraType} barCodeTypes={[Camera.constants.BarCodeType.qr]} onBarCodeRead={this._handleBarCodeRead.bind(this)}>
                                     <View style={styles.rectangleContainer}>
                                     <View style={styles.rectangle}/>
                                     </View>            
                                 </Camera>
                             </Container>
-                        
+                        </Col>
+                    </Row>
+                </Grid>
+               
+            </Container>
             );
         }else{
             return (
