@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
-import { List, ListItem, Text, Container, Content,Button, Thumbnail } from 'native-base';
+import { List, ListItem, Text, Container, Content, Button, Thumbnail } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Actions } from 'react-native-router-flux';
-import { View, Image} from 'react-native';
+import { View, Image } from 'react-native';
 const avatar = require('../../Assets/images/avatar.png');
 
 export default class Menu extends Component {
   render() {
     return (
-     <Container>
-     	<Content>
-        <View style={{height: 250, backgroundColor:'#1a1a1a', alignItems:'center', justifyContent:'center'}}>
-         <Thumbnail source={avatar}  large/>
-         <Text style={{color:'#ffffff'}}>Bruno Medeiros Costa</Text>
-        </View>
-        <List>
-            <ListItem onPress={()=>{Actions.codeScanner()}}>
-              <Text>Ler Produto</Text>
+      <Container>
+        <Content>
+          <View style={{ height: 250, backgroundColor: '#FF5722', alignItems: 'center', justifyContent: 'center' }}>
+            <Thumbnail source={avatar} large />
+            <Text style={{ color: '#ffffff' }}>Bruno Medeiros Costa</Text>
+          </View>
+          <List>
+            <ListItem onPress={() => { Actions.codeScanner() }}>
+              <Text>Fazer Checkin</Text>
             </ListItem>
-            <ListItem>
-              <Text>Meus Produtos</Text>
+            <ListItem onPress={() => { Actions.conversoes() }}>
+              <Text>Conversões</Text>
             </ListItem>
-            <ListItem>
-              <Text>Histórico de Transferências</Text>
+            <ListItem onPress={() => { Actions.login() }}>
+              <Text>Sair</Text>
             </ListItem>
-            <ListItem>
-              <Text>Configurações</Text>
-            </ListItem>
-     		</List>
-     	</Content>
+          </List>
+        </Content>
       </Container>
     );
   }
