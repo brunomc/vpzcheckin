@@ -5,8 +5,8 @@ import Conversoes from '../Containers/Conversoes';
 import Icon from 'react-native-ionicons';
 import Menu from '../Containers/Menu';
 import CodeScanner from '../Containers/CodeScanner';
-import ProfileCompany from '../Containers/ProfileCompany';
-import { Router, Scene, Drawer } from 'react-native-router-flux';
+import ResultadoCheckin from '../Containers/ResultadoCheckin';
+import { Router, Stack, Scene, Drawer, Actions } from 'react-native-router-flux';
 
 const MenuIcon = () => {
 	return (
@@ -15,9 +15,9 @@ const MenuIcon = () => {
 }
 
 export default props => (
-	<Router navigationBarStyle={{ backgroundColor: '#FF5722' }} titleStyle={{ color: '#ffffff' }} tintColor='#000000'>
-		<Scene key="root">
-
+	<Router navigationBarStyle={{ backgroundColor: '#FF5722' }} titleStyle={{ color: '#ffffff' }} tintColor='#FFFFFF'>
+		<Stack key="root">
+			<Scene key='login' title="Vipez Checkin - Gestão de eventos inteligente" component={Login} />
 			<Drawer
 				hideNavBar
 				key="drawerMenu"
@@ -27,15 +27,13 @@ export default props => (
 				drawerIcon={MenuIcon}
 			>
 
-				<Scene key='login' title="Vipez Checkin" component={Login} hideDrawerButton />
-				<Scene key='principal' title="Vipez" component={Principal} />
-				<Scene key='principal' title="Vipez" component={Principal} />
-				<Scene key='conversoes' title="Conversões" component={Conversoes} back hideDrawerButton />
-				<Scene key='profileCompany' title="Profile Company" component={ProfileCompany} />
 
+				<Scene key='principal' title="Vipez" component={Principal} />
+				<Scene key='conversoes' title="Conversões" component={Conversoes} onBack={() => { Actions.principal(); }} back hideDrawerButton />
+				<Scene key='resultadoCheckin' title="Checkin" component={ResultadoCheckin} onBack={() => { Actions.codeScanner(); }} back hideDrawerButton />
 				<Scene key='codeScanner' title="CheckinVipez" component={CodeScanner} back hideDrawerButton />
 			</Drawer>
 
-		</Scene>
+		</Stack>
 	</Router>
 );

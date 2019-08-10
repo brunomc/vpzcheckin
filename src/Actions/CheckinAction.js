@@ -5,21 +5,21 @@ import { env } from '../Config/Enviroment';
 import { Actions } from "react-native-router-flux";
 
 
-export const login = (data) => {
+export const validateQrCode = (data) => {
     loading(true)
     return dispatch => {
-        axios.post(env().url + "/login", data)
+        axios.post(env().url + "/xxx", data)
             .then(res => {
                 //Actions.principal();
                 if (res.data.status) {
-                    loginSuccess(res, dispatch);
+                    validateQrCodeSuccess(res, dispatch);
                 } else {
-                    loginError(res, dispatch)
+                    validateQrCodeError(res, dispatch)
                 }
 
             })
             .catch(res => {
-                loginError(res, dispatch)
+                validateQrCodeError(res, dispatch)
             });
     };
 };
@@ -27,12 +27,12 @@ const loading = (option) => {
     console.log('carregando', option)
     return ({ type: 'LOGIN_LOADING', payload: option })
 }
-const loginSuccess = (res, dispatch) => {
+const validateQrCodeSuccess = (res, dispatch) => {
     loading(false)
-    dispatch({ type: 'LOGIN', payload: res.data })
+    dispatch({ type: 'VALIDATE_QRCODE', payload: res.data })
     Actions.principal()
 }
-const loginError = (res, dispatch) => {
+const validateQrCodeError = (res, dispatch) => {
     loading(false)
-    dispatch({ type: 'LOGIN_ERROR', payload: res.data.erro ? res.data.erro : "Não foi possível realizar o login" })
+    dispatch({ type: 'VALIDATE_QRCODE_ERROR', payload: res.data.erro ? res.data.erro : "Não foi possível validar QRCODE" })
 }

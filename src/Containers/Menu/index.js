@@ -3,16 +3,19 @@ import { List, ListItem, Text, Container, Content, Button, Thumbnail } from 'nat
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Actions } from 'react-native-router-flux';
 import { View, Image } from 'react-native';
+import { connect } from 'react-redux';
 const avatar = require('../../Assets/images/avatar.png');
 
-export default class Menu extends Component {
+class Menu extends Component {
+
   render() {
     return (
       <Container>
         <Content>
           <View style={{ height: 250, backgroundColor: '#FF5722', alignItems: 'center', justifyContent: 'center' }}>
-            <Thumbnail source={avatar} large />
-            <Text style={{ color: '#ffffff' }}>Bruno Medeiros Costa</Text>
+            <Thumbnail source={{ uri: "http://www.vipez.com.br/uploads/" + this.props.usuario.imagem.split('/')[2] }} large />
+            <Text style={{ color: '#ffffff' }}>{this.props.usuario.nome}</Text>
+            <Text style={{ color: '#ffffff' }}>{this.props.usuario.tel_celular}</Text>
           </View>
           <List>
             <ListItem onPress={() => { Actions.codeScanner() }}>
@@ -30,3 +33,9 @@ export default class Menu extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  usuario: state.AuthReducer.usuario
+});
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)

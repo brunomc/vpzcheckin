@@ -59,16 +59,17 @@ export default StyleSheet.create({
         marginTop: Dimensions.get('window').height * 0.05,
         padding: 50,
         alignSelf: 'center',
-        backgroundColor: '#FF5722'
+        backgroundColor: '#FF5722',
+        color: '#FFFFFF'
     },
     list: {
         width: Dimensions.get('window').width * 0.8,
         alignSelf: 'center',
-        backgroundColor: '#FF5722',
         opacity: 0.8,
         borderColor: '#c6c6c6',
         borderWidth: 1,
         borderRadius: 10,
+        color: '#FFFFFF',
         marginTop: Dimensions.get('window').height * 0.05,
     },
     textCardPerson: {

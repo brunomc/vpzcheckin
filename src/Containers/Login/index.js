@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import styles from './styles';
-import { Container, Header, Content, Form, Item, Input, Label, Button, Text } from 'native-base';
+import { Container, Header, Content, Form, Item, Input, Label, Button, Text, Spinner } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { login } from '../../Actions/AuthAction';
@@ -69,9 +69,18 @@ class Login extends Component {
 
                         </Item>
                         <View style={styles.spaceBetweenFieldsAndLoginButton} />
-                        <Button style={styles.buttonForm} onPress={() => { Actions.principal(); this.handleSubmit() }} large block>
-                            <Text>Entrar</Text>
-                        </Button>
+                        {this.props.erro ?
+                            <Text style={styles.error}>{this.props.erro}</Text>
+                            :
+                            <React.Fragment />
+                        }
+                        {this.props.loading ?
+                            <Spinner color='orange' />
+                            :
+                            <Button style={styles.buttonForm} onPress={() => { this.handleSubmit() }} large block>
+                                <Text>Entrar</Text>
+                            </Button>
+                        }
                     </Form>
                 </View>
             </View>
@@ -85,7 +94,8 @@ class Login extends Component {
     }
 }
 const mapStateToProps = state => ({
-
+    erro: state.AuthReducer.erro,
+    loading: state.AuthReducer.loading
 });
 const mapDispatchToProps = { login };
 
