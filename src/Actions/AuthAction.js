@@ -19,12 +19,12 @@ export const login = (data) => {
 
             })
             .catch(res => {
+                res = { ...res, erro: 'Não foi possível realizar o login' }
                 loginError(res, dispatch)
             });
     };
 };
 const loading = (option) => {
-    console.log('carregando', option)
     return ({ type: 'LOGIN_LOADING', payload: option })
 }
 const loginSuccess = (res, dispatch) => {

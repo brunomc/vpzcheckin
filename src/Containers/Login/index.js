@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, AsyncStorage } from 'react-native';
 import styles from './styles';
-import { Container, Header, Content, Form, Item, Input, Label, Button, Text, Spinner } from 'native-base';
+import {
+    Container,
+    Header,
+    Content,
+    Form,
+    Item,
+    Input,
+    Label,
+    Button,
+    Text,
+    Spinner,
+    Switch,
+    Right
+} from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { login } from '../../Actions/AuthAction';
@@ -12,9 +25,17 @@ class Login extends Component {
             email: null,
             senha: null,
         },
+        salvarSenha: false,
         erros: {}
     }
-    componentDidMount() {
+    async componentWillMount() {
+        this.handleChange(await AsyncStorage.getItem('email'), 'email');
+        this.handleChange(await AsyncStorage.getItem('senha'), 'senha');
+        if (await AsyncStorage.getItem('senha')) {
+            this.setState({
+                salvarSenha: true
+            })
+        }
 
     }
     handleChange = (value, field) => {
@@ -36,8 +57,6 @@ class Login extends Component {
                     erros = {}
                 }
             })
-            console.log(erros)
-            console.log('state', this.state)
             if (Object.keys(erros).length > 0) {
                 this.setState({ erros: erros })
                 reject(false)
@@ -46,13 +65,24 @@ class Login extends Component {
         })
 
     }
-    handleSubmit = (evt) => {
+    handleSubmit = async (evt) => {
+        if (this.state.salvarSenha) {
+            await AsyncStorage.setItem('email', this.state.form.email)
+            await AsyncStorage.setItem('senha', this.state.form.senha)
+
+        } else {
+            await AsyncStorage.removeItem('email')
+            await AsyncStorage.removeItem('senha')
+        }
         this.validateForm().then(res => {
             this.props.login(this.state.form)
         }).catch(res => { })
 
-
     }
+    handleSalvarSenha = () => {
+        this.setState({ salvarSenha: !this.state.salvarSenha })
+    }
+
     render() {
         return (
             <View style={styles.container} >
@@ -61,13 +91,20 @@ class Login extends Component {
                     <Form style={styles.form}>
                         <Item floatingLabel>
                             <Label>Email  <Text style={styles.error}>{this.state.erros.email}</Text></Label>
-                            <Input onChangeText={(e) => { this.handleChange(e, 'email') }} value={this.state.form.username} />
+                            <Input onChangeText={(e) => { this.handleChange(e, 'email') }} value={this.state.form.email} />
                         </Item>
                         <Item floatingLabel last>
                             <Label>Senha <Text style={styles.error}>{this.state.erros.senha}</Text></Label>
-                            <Input secureTextEntry onChangeText={(e) => { this.handleChange(e, 'senha') }} value={this.state.form.password} />
+                            <Input secureTextEntry onChangeText={(e) => { this.handleChange(e, 'senha') }} value={this.state.form.senha} />
 
                         </Item>
+                        <View style={styles.salvarSenhaText}>
+                            <Right style={{ flexDirection: 'row' }}>
+                                <Label>Salvar senha?</Label>
+                                <Switch value={this.state.salvarSenha} onValueChange={this.handleSalvarSenha} />
+                            </Right>
+
+                        </View>
                         <View style={styles.spaceBetweenFieldsAndLoginButton} />
                         {this.props.erro ?
                             <Text style={styles.error}>{this.props.erro}</Text>

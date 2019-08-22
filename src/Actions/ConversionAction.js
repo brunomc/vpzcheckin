@@ -28,6 +28,9 @@ const getConversionsSuccess = (res, dispatch) => {
 const getConversionsError = (res, dispatch) => {
     dispatch({ type: 'GET_CONVERSIONS_ERROR', payload: res.data })
 }
+export const setConversion = (data) => {
+    return { type: 'SET_CONVERSION', payload: data }
+}
 export const getConversion = (data) => {
     console.log(data)
     return dispatch => {

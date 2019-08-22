@@ -1,11 +1,12 @@
 const INITIAL_STATE = {
 	conversions: {
 		titulo: "",
-		imagem: "",
 		total: 0
 	},
 	erro: "",
-	conversion: {}
+	conversion: {
+		nome: ""
+	}
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,8 +18,10 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, erro: action.payload.erro }
 		}
 		case 'GET_CONVERSION': {
-			console.log(action.payload)
 			return { ...state, conversion: action.payload.convertido }
+		}
+		case 'SET_CONVERSION': {
+			return { ...state, conversion: action.payload }
 		}
 		case 'GET_CONVERSION_ERROR': {
 			return { ...state, erro: action.payload.erro }

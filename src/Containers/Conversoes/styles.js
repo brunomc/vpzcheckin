@@ -10,8 +10,8 @@ export default StyleSheet.create({
     },
     image: {
         marginTop: Dimensions.get('window').height * 0.01,
-        width: Dimensions.get('window').width * 0.5,
-        height: Dimensions.get('window').height * 0.25,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.4,
         alignSelf: 'center',
         borderColor: '#c6c6c6',
         borderWidth: 5,
@@ -22,7 +22,7 @@ export default StyleSheet.create({
         width: Dimensions.get('window').width
     },
     textTitleCardItem: {
-        fontSize: 40,
+        fontSize: 30,
         fontWeight: 'bold'
     },
     card: {
@@ -32,7 +32,7 @@ export default StyleSheet.create({
         alignItems: 'center'
     },
     textCardItem: {
-        fontSize: 30,
+        fontSize: 20,
         alignSelf: 'center',
         fontWeight: 'bold',
         marginTop: Dimensions.get('window').height * 0.05
@@ -57,13 +57,13 @@ export default StyleSheet.create({
     },
     buttonForm: {
         marginTop: Dimensions.get('window').height * 0.05,
-        padding: 50,
+        padding: 30,
         alignSelf: 'center',
         backgroundColor: '#FF5722',
         color: '#FFFFFF'
     },
     list: {
-        width: Dimensions.get('window').width * 0.8,
+        width: Dimensions.get('window').width,
         alignSelf: 'center',
         opacity: 0.8,
         borderColor: '#c6c6c6',
@@ -73,8 +73,15 @@ export default StyleSheet.create({
         marginTop: Dimensions.get('window').height * 0.05,
     },
     textCardPerson: {
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: 'bold'
+    },
+    textErro: {
+        fontSize: 20,
+        alignSelf: 'center',
+        fontWeight: 'bold',
+        color: 'red',
+        marginTop: Dimensions.get('window').height * 0.05
     }
 
 

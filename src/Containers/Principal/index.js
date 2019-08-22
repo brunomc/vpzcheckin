@@ -16,14 +16,14 @@ export default class Principal extends Component {
         <Row>
           <LinearGradient colors={['#ff5722', '#ff7c53', '#ff9c53']} style={styles.linearGradient}>
             <Col style={styles.colButton} onPress={() => { Actions.codeScanner() }}>
-              <Text style={styles.textColButton}>Fazer Checkin</Text>
+              <Text style={styles.textColButton}>Check-in</Text>
             </Col>
           </LinearGradient>
         </Row>
         <Row>
           <LinearGradient colors={['#3afcc8', '#3afcc8', '#00a383']} style={styles.linearGradient}>
             <Col style={styles.colButton} onPress={() => { Actions.conversoes() }}>
-              <Text style={styles.textColButton}>Verificar Conversões</Text>
+              <Text style={styles.textColButton}>Consultar</Text>
             </Col>
           </LinearGradient>
         </Row>

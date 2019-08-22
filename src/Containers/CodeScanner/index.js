@@ -33,10 +33,14 @@ class CodeScanner extends Component {
             cameraType: Camera.constants.Type.back
         });
     }
-    _handleBarCodeRead(e) {
+    _handleBarCodeRead = (e) => {
         Vibration.vibrate();
         if (e.data !== null) {
-            this.props.validateQrCode(e.data)
+            this.props.validateQrCode({
+                id: this.props.usuario.id,
+                senha: this.props.usuario.senha,
+                codigo: e.data
+            })
             Actions.resultadoCheckin();
         }
     }
@@ -49,7 +53,9 @@ class CodeScanner extends Component {
                         <Row>
                             <Col>
                                 <Container style={styles.rectangleContainer}>
-                                    <Camera style={styles.camera} type={this.state.cameraType} barCodeTypes={[Camera.constants.BarCodeType.qr]} onBarCodeRead={this._handleBarCodeRead.bind(this)}>
+                                    <Camera style={styles.camera}
+                                        type={this.state.cameraType}
+                                        onBarCodeRead={this._handleBarCodeRead.bind(this)}>
                                         <View style={styles.rectangleContainer}>
                                             <View style={styles.rectangle} />
                                         </View>
@@ -70,7 +76,9 @@ class CodeScanner extends Component {
 
     }
 }
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+    usuario: state.AuthReducer.usuario
+});
 const mapDispatchToProps = { validateQrCode };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CodeScanner)

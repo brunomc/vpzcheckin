@@ -33,6 +33,9 @@ export default StyleSheet.create({
         textAlign: 'center',
         color: '#fff'
     },
+    salvarSenhaText: {
+        marginTop: Dimensions.get('window').height * 0.05
+    },
     error: {
         color: 'red'
     }
