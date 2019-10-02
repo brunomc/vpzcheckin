@@ -5,7 +5,12 @@ const INITIAL_STATE = {
 	},
 	erro: "",
 	conversion: {
-		nome: ""
+		nome: "",
+		cpf: "",
+		data: "",
+		lista: "",
+		tipo: "",
+		valor: ""
 	}
 };
 

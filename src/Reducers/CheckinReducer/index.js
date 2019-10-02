@@ -6,6 +6,8 @@ const INITIAL_STATE = {
 		convertidos: "",
 		data: "",
 		lista: "",
+		tipo: "",
+		valor: "",
 		total: ""
 	},
 	erro: "",

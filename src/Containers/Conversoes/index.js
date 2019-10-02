@@ -106,7 +106,10 @@ class Conversoes extends Component {
                               <Text>{this.props.conversion.erro}</Text>
                               <Text style={styles.textCardPerson} >{this.props.conversion.nome}</Text>
                               <Text style={styles.textCardPerson} >CPF: {this.props.conversion.cpf}</Text>
-                              <Text note>Data de entrada: {this.props.conversion.data}</Text>
+                              <Text style={styles.textCardPerson} >Tipo: {this.props.conversion.tipo}</Text>
+                              <Text style={styles.textCardPerson} >Lista: {this.props.conversion.lista}</Text>
+                              <Text style={styles.textCardPerson} >Data: {this.props.conversion.data}</Text>
+                              <Text style={styles.textCardPerson} >Valor: R${this.props.conversion.valor}</Text>
                             </React.Fragment>
                             <React.Fragment />
                           </Body>

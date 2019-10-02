@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, AsyncStorage } from 'react-native';
+import { View, Image, AsyncStorage, Keyboard } from 'react-native';
 import styles from './styles';
 import {
     Container,
@@ -26,9 +26,12 @@ class Login extends Component {
             senha: null,
         },
         salvarSenha: false,
-        erros: {}
+        erros: {},
+        keyboardState: 'closed'
     }
     async componentWillMount() {
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
         this.handleChange(await AsyncStorage.getItem('email'), 'email');
         this.handleChange(await AsyncStorage.getItem('senha'), 'senha');
         if (await AsyncStorage.getItem('senha')) {
@@ -37,6 +40,10 @@ class Login extends Component {
             })
         }
 
+    }
+    componentWillUnmount() {
+        this.keyboardDidShowListener.remove();
+        this.keyboardDidHideListener.remove();
     }
     handleChange = (value, field) => {
         this.setState({
@@ -82,11 +89,25 @@ class Login extends Component {
     handleSalvarSenha = () => {
         this.setState({ salvarSenha: !this.state.salvarSenha })
     }
+    _keyboardDidShow = () => {
+        this.setState({
+            keyboardState: 'opened'
+        });
+    }
 
+    _keyboardDidHide = () => {
+        this.setState({
+            keyboardState: 'closed'
+        });
+    }
     render() {
         return (
             <View style={styles.container} >
-                <Image style={styles.logo} resizeMode="stretch" source={require('../../Assets/images/logo.png')} />
+                {this.state.keyboardState == 'closed' ?
+                    <Image style={styles.logo} resizeMode="stretch" source={require('../../Assets/images/logo.png')} />
+                    :
+                    <React.Fragment />
+                }
                 <View>
                     <Form style={styles.form}>
                         <Item floatingLabel>

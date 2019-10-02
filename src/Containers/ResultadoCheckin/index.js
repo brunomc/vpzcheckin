@@ -65,10 +65,12 @@ class ResultadoCheckin extends Component {
                                                     <React.Fragment>
                                                         <Text style={styles.textCardPerson} >{this.props.convidado.nome}</Text>
                                                         <Text style={styles.textCardPerson} >CPF: {this.props.convidado.cpf}</Text>
-                                                        <Text style={styles.textCardPerson} >Data de entrada: {this.props.convidado.data}</Text>
+                                                        <Text style={styles.textCardPerson} >Tipo: {this.props.convidado.tipo}</Text>
+                                                        <Text style={styles.textCardPerson} >Data: {this.props.convidado.data}</Text>
                                                         <Text style={styles.textCardPerson} >Lista: {this.props.convidado.lista}</Text>
                                                         <Text style={styles.textCardPerson} >{this.props.convidado.convertidos} de {this.props.convidado.total}</Text>
                                                         <Text style={styles.textCardPerson} >Brindes: {this.props.convidado.brindes}</Text>
+                                                        <Text style={styles.textCardPerson} >Valor: {this.props.convidado.valor}</Text>
                                                     </React.Fragment>
                                                 }
                                             </React.Fragment>

@@ -32,6 +32,7 @@ export const validateQrCode = (data) => {
                 }
             })
             .catch(res => {
+                console.log(res)
                 validateQrCodeError(res, dispatch)
             });
     };
