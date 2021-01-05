@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel": "^6.23.0",
     "cpf-check": "^3.0.0",
     "native-base": "^2.8.1",
