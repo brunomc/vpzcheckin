@@ -13,7 +13,7 @@
     "cpf-check": "^3.0.0",
     "native-base": "^2.8.1",
     "react": "16.5.0",
-    "react-native": "0.57.1",
+    "react-native": "0.70.4",
     "react-native-camera": "1.8.1",
     "react-native-easy-grid": "^0.2.0",
     "react-native-ionicons": "^4.4.5",
